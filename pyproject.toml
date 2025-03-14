@@ -1,0 +1,29 @@
+[project]
+name = "rkllm-runtime"
+version = "0.1.0"
+description = "RKLLM Runtime SDK for Python."
+authors = [
+    {name = "Ryan Persée", email = "98691129+rpersee@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "cffi (>=1.17.1,<2.0.0)",
+    "setuptools (>=75.8.0,<76.0.0)"
+]
+
+[tool.mypy]
+implicit_optional = true
+
+[tool.poetry]
+packages = [{include = "rkllm_runtime", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.15.0"
+black = "^25.1.0"
+types-cffi = "^1.16.0.20241221"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
