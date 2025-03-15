@@ -1,1 +1,0 @@
-../external/rknn-llm/rkllm-runtime/Linux/librkllm_api/include/rkllm.h

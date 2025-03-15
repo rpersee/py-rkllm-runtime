@@ -19,7 +19,7 @@ exclude = ["**/*.c"]
 
 
 [tool.poetry.build]
-script = "build.py"
+script = "scripts/build-cffi.py"
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
