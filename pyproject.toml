@@ -3,27 +3,37 @@ name = "rkllm-runtime"
 version = "0.1.0"
 description = "RKLLM Runtime SDK for Python."
 authors = [
-    {name = "Ryan Persée", email = "98691129+rpersee@users.noreply.github.com"}
+    { name = "Ryan Persée", email = "98691129+rpersee@users.noreply.github.com" },
 ]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "cffi (>=1.17.1,<2.0.0)",
-    "setuptools (>=75.8.0,<76.0.0)"
+    "cffi (>=1.17.1,<2.0.0)",  # needed for _cffi_backend
 ]
 
-[tool.mypy]
-implicit_optional = true
-
 [tool.poetry]
-packages = [{include = "rkllm_runtime", from = "src"}]
+packages = [{ include = "rkllm_runtime", from = "src" }]
+include = [{ path = "src/rkllm_runtime/**/*.so", format = "wheel" }]
+# exclude any intermediate source files
+exclude = ["**/*.c"]
 
+
+[tool.poetry.build]
+script = "build.py"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.15.0"
 black = "^25.1.0"
-types-cffi = "^1.16.0.20241221"
+mypy = "^1.15.0"
+types-cffi = "^1.16.0.20250307"
+
+
+[tool.poetry.group.build.dependencies]
+setuptools = "^75.8.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = [
+    "poetry-core>=2.0.0,<3.0.0",
+    "cffi>=1.0.0,<2.0.0",
+    "setuptools>=75.0.0,<76.0.0",
+]
 build-backend = "poetry.core.masonry.api"
